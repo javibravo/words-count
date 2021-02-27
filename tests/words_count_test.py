@@ -1,5 +1,5 @@
 import pytest
-from words_count import WordsCount
+from lib.words_count import WordsCount
 
 @pytest.mark.parametrize(
     "line, words",
