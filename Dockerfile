@@ -1,5 +1,4 @@
 FROM python:3
 
 COPY . /opt/words-count
-WORKDIR /opt/words-count
-RUN pip install -r requirements.txt
+RUN ln -sf /opt/words-count/words_count.py /usr/local/bin/words-count

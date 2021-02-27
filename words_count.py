@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from lib.words_count import WordsCount
 import argparse
 import json
