@@ -3,9 +3,9 @@ import re
 
 class WordsCount:
 
-    def __init__(self, file_path, chunk_size=3):
+    def __init__(self, file_path_list, chunk_size=3):
         self._chunk_size = chunk_size
-        self._file_path = file_path
+        self._file_path_list = file_path_list
         self._counts = {}
 
     @property
@@ -20,10 +20,11 @@ class WordsCount:
 
     def count(self):
         self._counts = {}
-        with open(self._file_path) as file_to_read:
+        for file_path in self._file_path_list:
             prepend_words = []
-            for line in file_to_read:
-                prepend_words = self._process_line(line, prepend_words)
+            with open(file_path) as file_to_read:
+                for line in file_to_read:
+                    prepend_words = self._process_line(line, prepend_words)
 
     def _process_line(self, line, words_prepend):
         words = words_prepend + self.clean_and_split_lie(line)
