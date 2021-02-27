@@ -3,14 +3,16 @@ import re
 
 class WordsCount:
 
-    def __init__(self, file_path_list, chunk_size=3):
+    def __init__(self, file_path_list, chunk_size=3, top_number=100):
         self._chunk_size = chunk_size
         self._file_path_list = file_path_list
+        self._top_number = top_number
         self._counts = {}
+        self._result = {}
 
     @property
     def result(self):
-        return self._counts
+        return self._result
 
     @staticmethod
     def clean_and_split_lie(line):
@@ -25,6 +27,11 @@ class WordsCount:
             with open(file_path) as file_to_read:
                 for line in file_to_read:
                     prepend_words = self._process_line(line, prepend_words)
+
+        sorted_keys = sorted(self._counts, key=self._counts.get, reverse=True)[:self._top_number]
+        self._result = {}
+        for words in sorted_keys:
+            self._result[words] = self._counts[words]
 
     def _process_line(self, line, words_prepend):
         words = words_prepend + self.clean_and_split_lie(line)
