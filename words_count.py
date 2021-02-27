@@ -12,6 +12,12 @@ class WordsCount:
     def result(self):
         return self._counts
 
+    @staticmethod
+    def clean_and_split_lie(line):
+        line_words = re.split(r'\W+', re.sub(r'[^A-Za-z0-9 ]+', '',  line.lower().strip()))
+        line_words = list(filter(None, line_words))
+        return line_words
+
     def count(self):
         self._counts = {}
         with open(self._file_path) as file_to_read:
@@ -20,19 +26,10 @@ class WordsCount:
                 prepend_words = self._process_line(line, prepend_words)
 
     def _process_line(self, line, words_prepend):
-        if not line.strip():
-            return words_prepend
-        words = words_prepend + re.split(r'\W+', line.lower().strip())
+        words = words_prepend + self.clean_and_split_lie(line)
         for index in range(len(words) - (self._chunk_size-1)):
             chunk_of_words = ' '.join(words[index:index + self._chunk_size])
             if chunk_of_words not in self._counts:
                 self._counts[chunk_of_words] = 0
             self._counts[chunk_of_words] += 1
-
         return words[-(self._chunk_size-1):]
-
-
-
-
-if __name__ == '__main__':
-    WordsCount('file.txt').count()
