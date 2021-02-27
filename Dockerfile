@@ -1,4 +1,5 @@
 FROM python:3
 
-WORKDIR /opt/three-words-count
-
+COPY . /opt/words-count
+WORKDIR /opt/words-count
+RUN pip install -r requirements.txt
