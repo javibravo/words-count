@@ -3,7 +3,8 @@
 from lib.words_count import WordsCount
 import argparse
 import json
-
+import fileinput
+import sys
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-f', '--files', nargs='*', help='Files path to read', required=False, default=[])
@@ -13,7 +14,12 @@ args = parser.parse_args()
 
 
 if __name__ == "__main__":
-    words_counter = WordsCount(file_path_list=args.files, chunk_size=args.number_of_words, top_number=args.top)
-    words_counter.count()
+    words_counter = WordsCount(chunk_size=args.number_of_words, top_number=args.top)
+
+    if not sys.stdin.isatty():
+        for line in fileinput.input():
+            words_counter.count(line=line)
+    else:
+        words_counter.count_in_files(files_path=args.files)
 
     print(json.dumps(words_counter.result, sort_keys=False, indent=4))

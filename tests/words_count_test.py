@@ -61,8 +61,8 @@ def test_process_sequences_of_words_3_single_file():
         'ebook on the': 1
     }
 
-    words_count_three = WordsCount(['./tests/files/sample_complete.txt'])
-    words_count_three.count()
+    words_count_three = WordsCount()
+    words_count_three.count_in_files(['./tests/files/sample_complete.txt'])
 
     assert words_count_three.result == expected_output
 
@@ -87,6 +87,8 @@ def test_process_sequences_of_words_3_multiple_files():
         'title on the': 1,
         'of species 6th': 1,
         'species 6th edition': 1,
+        '6th edition release': 1,
+        'edition release date': 1,
         'release date december': 1,
         'date december 1999': 1,
         'december 1999 etext': 1,
@@ -107,10 +109,10 @@ def test_process_sequences_of_words_3_multiple_files():
         'ebook on the': 1
     }
 
-    words_count_three = WordsCount(
+    words_count_three = WordsCount()
+    words_count_three.count_in_files(
         ['./tests/files/sample_multiple_part_1.txt', './tests/files/sample_multiple_part_2.txt']
     )
-    words_count_three.count()
 
     assert words_count_three.result == expected_output
 
@@ -162,8 +164,8 @@ def test_process_sequences_of_words_5_single_file():
         'ebook on the origin of': 1
     }
 
-    words_count_five = WordsCount(['./tests/files/sample_complete.txt'], chunk_size=5)
-    words_count_five.count()
+    words_count_five = WordsCount(chunk_size=5)
+    words_count_five.count_in_files(['./tests/files/sample_complete.txt'])
 
     assert words_count_five.result == expected_output
 
@@ -177,7 +179,7 @@ def test_process_sequences_of_words_3_single_file_top_5():
         'origin of species': 4
     }
 
-    words_count_three = WordsCount(['./tests/files/sample_complete.txt'], top_number=5)
-    words_count_three.count()
+    words_count_three = WordsCount(top_number=5)
+    words_count_three.count_in_files(['./tests/files/sample_complete.txt'])
 
     assert words_count_three.result == expected_output
