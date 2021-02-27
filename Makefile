@@ -11,5 +11,5 @@ docker-build:
 .PHONY: docker-run
 docker-run:
 	@echo '..starting docker container..'
-	docker run --interactive --tty --volume `pwd`:/tmp/ --volume ~/three-words-count/samples/ \
+	docker run --interactive --tty --volume `pwd`:/tmp/ \
 		$(DOCKER_IMAGE_NAME) bash || true
