@@ -48,3 +48,47 @@ optional arguments:
   -t TOP, --top TOP     Max number of groups of words to output
 ```
 
+### Examples of use
+
+Process to `stdin`:
+```
+>$ cat pg2009.txt | words-count
+{
+    "of the same": 320,
+    "the same species": 126,
+    "conditions of life": 125,
+    "in the same": 116,
+    "of natural selection": 107,
+    "from each other": 103,
+    "species of the": 98,
+    "on the other": 89,
+    "the other hand": 81,
+    "the case of": 78,
+    "the theory of": 75,
+...
+```
+
+Use arguments for adjusting the options:
+```
+words-count --files pg2009.txt --number-of-words 6 --top 5
+{
+    "the individuals of the same species": 31,
+    "the species of the same genus": 19,
+    "we can understand how it is": 13,
+    "can understand how it is that": 13,
+    "the project gutenberg literary archive foundation": 13
+}
+```
+
+Process multiple files:
+```
+words-count --files pg2009.txt pg2009.txt --number-of-words 6 --top 5
+{
+    "the individuals of the same species": 62,
+    "the species of the same genus": 38,
+    "we can understand how it is": 26,
+    "can understand how it is that": 26,
+    "the project gutenberg literary archive foundation": 26
+}
+```
+
