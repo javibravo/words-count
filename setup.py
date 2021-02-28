@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from setuptools import setup
+import os
 import pathlib
 import words_count
 
@@ -8,7 +9,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name='words-count',
-    version=words_count.__version__,
+    version=os.environ.get('RELEASE_VERSION', words_count.__version__),
     author='Javier Bravo',
     author_email='javibravo85@gmail.com',
     license="MIT",
