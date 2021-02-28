@@ -4,15 +4,15 @@ CLI tool for that outputs the N (N by default 100) most common n-word (n by defa
 
 The CLI can get the text on 'stdin' with default params:
 ```
->$ cat text_file.txt | word-count
+>$ cat text_file.txt | words-count
 ...
 ```
  
 Or using positional arguments:
 ```
->$ word-count --files text_file.txt
+>$ words-count --files text_file.txt
 ...
->$ word-count --files text_file.txt --number-of-words 4 --top 5
+>$ words-count --files text_file.txt --number-of-words 4 --top 5
 ...
 ```
 
