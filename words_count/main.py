@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from lib.words_count import WordsCount
+from words_count.parser import WordsCount
 import argparse
 import json
 import fileinput
@@ -18,7 +18,7 @@ parser.add_argument('-t', '--top', help='Max number of groups of words to output
 args = parser.parse_args()
 
 
-if __name__ == "__main__":
+def main():
     if not sys.stdin.isatty() and args.files:
         sys.exit(
             "You should use 'stdin' OR positional arguments (--file, --number-of-words, --top) as input," "but not both"
@@ -33,3 +33,7 @@ if __name__ == "__main__":
         words_counter.count_in_files(files_path=args.files)
 
     print(json.dumps(words_counter.result, sort_keys=False, indent=4))
+
+
+if __name__ == "__main__":
+    main()
