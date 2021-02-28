@@ -1,4 +1,4 @@
-# Word Count
+# Words Count
 
 CLI tool for that outputs the N (N by default 100) most common n-word (n by default is 3) sequence in text, along with a count of how many times each occurred in the text.
 
