@@ -1,7 +1,7 @@
 SHELL:=/usr/bin/env bash -O extglob -O globstar -o pipefail
 
 # Docker
-DOCKER_IMAGE_NAME:=three-words-count
+DOCKER_IMAGE_NAME:=words-count
 
 .PHONY: docker-build
 docker-build:
@@ -11,5 +11,9 @@ docker-build:
 .PHONY: docker-run
 docker-run:
 	@echo '..starting docker container..'
-	docker run --interactive --tty --volume `pwd`:/tmp/ \
-		$(DOCKER_IMAGE_NAME) bash || true
+	docker run --interactive --tty  $(DOCKER_IMAGE_NAME) bash || true
+
+.PHONY: tests
+tests:
+	@echo '..starting docker container..'
+	docker run --interactive --tty  $(DOCKER_IMAGE_NAME) bash '-c' 'python -m pytest -vvv'

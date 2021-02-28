@@ -48,6 +48,3 @@ optional arguments:
   -t TOP, --top TOP     Max number of groups of words to output
 ```
 
-## Development
-
-TODO
