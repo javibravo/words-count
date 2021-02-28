@@ -87,8 +87,6 @@ def test_process_sequences_of_words_3_multiple_files():
         'title on the': 1,
         'of species 6th': 1,
         'species 6th edition': 1,
-        '6th edition release': 1,
-        'edition release date': 1,
         'release date december': 1,
         'date december 1999': 1,
         'december 1999 etext': 1,

@@ -38,6 +38,7 @@ class WordsCount:
 
     def count_in_files(self, files_path):
         for file_path in files_path:
+            self._prepend_words = []
             with open(file_path) as file_to_read:
                 for line in file_to_read:
                     self.count(line)
