@@ -19,7 +19,7 @@ class WordsCount:
         return self._result
 
     @staticmethod
-    def clean_and_split_lie(line):
+    def clean_and_split_line(line):
         line_words = re.split(r'\W+', re.sub(r'[^A-Za-z0-9 ]+', '',  line.lower().strip()))
         line_words = list(filter(None, line_words))
         return line_words
@@ -28,7 +28,7 @@ class WordsCount:
         self._prepend_words = self._process_line(line, self._prepend_words)
 
     def _process_line(self, line, words_prepend):
-        words = words_prepend + self.clean_and_split_lie(line)
+        words = words_prepend + self.clean_and_split_line(line)
         for index in range(len(words) - (self._chunk_size-1)):
             chunk_of_words = ' '.join(words[index:index + self._chunk_size])
             if chunk_of_words not in self._counts:

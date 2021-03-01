@@ -16,7 +16,7 @@ from words_count.parser import WordsCount
     ]
 )
 def test_clean_and_split_line(line, words):
-    assert WordsCount.clean_and_split_lie(line) == words
+    assert WordsCount.clean_and_split_line(line) == words
 
 
 def test_process_sequences_of_words_3_single_file():
